@@ -27,7 +27,7 @@ function sendMessageToSlack(message) {
     var messages = {
         text: formattedDate + message,
         channel: '#builds'
-    }
+    };
     slack.notify(messages, function (err, result) {
         if (!err) {
             console.log('Sent message: ');
@@ -42,86 +42,53 @@ function sendMessageToSlack(message) {
 
 sendMessageToSlack('*Siema Heniu*');
 
-gith({
-    repo: 'codepotpl/codepot',
-    branch: 'production'
-}).on('all', function (payload) {
-    var message = '*Production changed*.\nPusher: `' + payload.pusher + '`.\n\nBuilding and running new production image...';
-    sendMessageToSlack(message);
 
-    var startDate = new Date();
-    execFile('./codepot-production.sh', function (error, stdout, stderr) {
-        var message;
-        if (!error) {
-            message = '*Production build complete! Hooray!*';
-        } else {
-            message = '*Production build failed!*.\nMore info below:\n\n```' + error + '```';
-            console.error('Something went wront in production docker build.');
-            console.error(error);
-        }
-        sendMessageToSlack('Production build time: `' + (new Date() - startDate) / 1000.0 + '`.\n' + message);
-    });
-});
+var targets = [
+    {
+        repo: 'codepotpl/codepot',
+        branch: 'production',
+        appName: 'WEBSITE PRODUCTION',
+        script: './codepot-production.sh'
+    },
+    {
+        repo: 'codepotpl/codepot',
+        branch: 'master',
+        appName: 'WEBSITE STAGING',
+        script: './codepot-staging.sh'
+    },
+    {
+        repo: 'codepotpl/codepot-webclient',
+        branch: 'master',
+        appName: 'WEBCLIENT STAGING',
+        script: './codepot-webclient-staging.sh'
+    },
+    {
+        repo: 'codepotpl/codepot-backend',
+        branch: 'master',
+        appName: 'BACKEND STAGING',
+        script: './codepot-backend-staging.sh'
+    }
+];
 
-gith({
-    repo: 'codepotpl/codepot',
-    branch: 'master'
-}).on('all', function (payload) {
-    var message = '*Master changed*.\nPusher: `' + payload.pusher + '`.\n\nBuilding and running new staging image...';
-    sendMessageToSlack(message);
+targets.forEach(function (target) {
+    gith({
+        repo: target.repo,
+        branch: target.branch
+    }).on('all', function (payload) {
+        var message = '------ *' + target.repo + ':' + target.branch + '* changed ------\nPusher: `' + payload.pusher + '`.\n\nBuilding and running new ' + target.appName;
+        sendMessageToSlack(message);
 
-    var startDate = new Date();
-    execFile('./codepot-staging.sh', function (error, stdout, stderr) {
-        var message;
-        if (!error) {
-            message = '*Staging build complete! Hooray!*';
-        } else {
-            message = '*Staging build failed!*.\nMore info below:\n\n```' + error + '```';
-            console.error('Something went wront in staging docker build.');
-            console.error(error);
-        }
-        sendMessageToSlack('Staging build time: `' + (new Date() - startDate) / 1000.0 + '`.\n' + message);
-    });
-});
-
-gith({
-    repo: 'codepotpl/codepot-webclient',
-    branch: 'master'
-}).on('all', function (payload) {
-    var message = '*CODEPOT WEBCLIENT Master changed*.\nPusher: `' + payload.pusher + '`.\n\nBuilding and running new staging image...';
-    sendMessageToSlack(message);
-
-    var startDate = new Date();
-    execFile('./codepot-webclient-staging.sh', function (error, stdout, stderr) {
-        var message;
-        if (!error) {
-            message = '*Staging build complete! Hooray!*';
-        } else {
-            message = '*Staging build failed!*.\nMore info below:\n\n```' + error + '```';
-            console.error('Something went wront in staging docker build.');
-            console.error(error);
-        }
-        sendMessageToSlack('Staging build time: `' + (new Date() - startDate) / 1000.0 + '`.\n' + message);
-    });
-});
-
-gith({
-    repo: 'codepotpl/codepot-backend',
-    branch: 'master'
-}).on('all', function (payload) {
-    var message = '*CODEPOT BACKEND Master changed*.\nPusher: `' + payload.pusher + '`.\n\nBuilding and running new staging image...';
-    sendMessageToSlack(message);
-
-    var startDate = new Date();
-    execFile('./codepot-backend-staging.sh', function (error, stdout, stderr) {
-        var message;
-        if (!error) {
-            message = '*Staging build complete! Hooray!*';
-        } else {
-            message = '*Staging build failed!*.\nMore info below:\n\n```' + error + '```';
-            console.error('Something went wront in staging docker build.');
-            console.error(error);
-        }
-        sendMessageToSlack('Staging build time: `' + (new Date() - startDate) / 1000.0 + '`.\n' + message);
+        var startDate = new Date();
+        execFile(target.script, function (error, stdout, stderr) {
+            var message;
+            if (!error) {
+                message = '*' + target.appName + ' build complete! Hooray!*';
+            } else {
+                message = '*' + target.appName + ' build failed!*.\nMore info below:\n\n```' + error + '```';
+                console.error('Something went wrong in ' + target.appName + ' build.');
+                console.error(error);
+            }
+            sendMessageToSlack(target.appName + ' build time: `' + (new Date() - startDate) / 1000.0 + '`.\n' + message);
+        });
     });
 });
