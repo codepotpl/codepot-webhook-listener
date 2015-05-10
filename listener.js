@@ -1,6 +1,6 @@
 REQUIRED_ENVIRONMENT_VARIABLES = [
-    'GITHUB_WEBHOOK_PORT',
-    'SLACK_HOOK_TOKEN'
+    'WEBHOOK_LISTENER_GITHUB_WEBHOOK_PORT',
+    'WEBHOOK_LISTENER_SLACK_HOOK_TOKEN'
 ];
 MISSING_VARIABLES = [];
 REQUIRED_ENVIRONMENT_VARIABLES.forEach(function (variableName) {
@@ -16,11 +16,11 @@ if (MISSING_VARIABLES.length > 0) {
 
 process.env.TZ = 'Europe/Warsaw';
 
-var gith = require('gith').create(process.env.GITHUB_WEBHOOK_PORT);
+var gith = require('gith').create(process.env.WEBHOOK_LISTENER_GITHUB_WEBHOOK_PORT);
 var execFile = require('child_process').execFile;
 var nodeSlackr = require('node-slackr');
 
-var slack = new nodeSlackr(process.env.SLACK_HOOK_TOKEN);
+var slack = new nodeSlackr(process.env.WEBHOOK_LISTENER_SLACK_HOOK_TOKEN);
 
 function sendMessageToSlack(message) {
     var formattedDate = '`' + new Date() + '`\n';
