@@ -67,6 +67,12 @@ var targets = [
         branch: 'master',
         appName: 'BACKEND STAGING',
         script: './codepot-backend-staging.sh'
+    },
+    {
+        repo: 'codepotpl/codepot-backend',
+        branch: 'production',
+        appName: 'BACKEND PRODUCTION',
+        script: './codepot-backend-production.sh'
     }
 ];
 
