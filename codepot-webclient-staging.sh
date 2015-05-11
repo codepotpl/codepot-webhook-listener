@@ -6,4 +6,4 @@ git fetch -f;
 git reset --hard origin/master;
 docker build --tag codepot-webclient-staging .;
 docker rm -f codepot-webclient-staging;
-docker run -v `pwd`/dist:/app/dist --name codepot-webclient-staging -e API_HOST="https://api.codepot.pl:8080/" codepot-webclient-staging;
+docker run -v `pwd`/dist:/app/dist --name codepot-webclient-staging -e API_HOST="https://backend.codepot.pl:8443/" codepot-webclient-staging;
