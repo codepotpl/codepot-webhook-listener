@@ -3,7 +3,7 @@
 cd /home/codepot/codepot-backend-production
 
 git fetch -f;
-git reset --hard origin/master;
+git reset --hard origin/production;
 docker-compose build;
 docker-compose up -d;
 
