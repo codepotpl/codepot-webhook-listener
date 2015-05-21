@@ -7,4 +7,4 @@ git reset --hard origin/production;
 docker-compose build;
 docker-compose up -d;
 
-sh /home/codepot/codepot-nginx/run.sh
+sh /home/codepot/codepot-nginx-production/run.sh

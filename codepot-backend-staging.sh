@@ -7,4 +7,4 @@ git reset --hard origin/master;
 docker-compose build;
 docker-compose up -d;
 
-sh /home/codepot/codepot-nginx/run.sh
+sh /home/codepot/codepot-nginx-staging/run.sh

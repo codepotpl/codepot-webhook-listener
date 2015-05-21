@@ -8,4 +8,4 @@ docker build --tag codepot-production .;
 docker rm -f codepot-production;
 docker run -d --name codepot-production -e CDPT_HOST="https://codepot.pl/" codepot-production;
 
-sh /home/codepot/codepot-nginx/run.sh
+sh /home/codepot/codepot-nginx-production/run.sh
