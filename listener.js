@@ -63,6 +63,12 @@ var targets = [
         script: './codepot-webclient-staging.sh'
     },
     {
+        repo: 'codepotpl/codepot-webclient',
+        branch: 'production',
+        appName: 'WEBCLIENT PRODUCTION',
+        script: './codepot-webclient-production.sh'
+    },
+    {
         repo: 'codepotpl/codepot-backend',
         branch: 'master',
         appName: 'BACKEND STAGING',
