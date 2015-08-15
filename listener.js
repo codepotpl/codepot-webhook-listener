@@ -40,44 +40,44 @@ function sendMessageToSlack(message) {
     });
 }
 
-sendMessageToSlack('*Siema Heniu*');
+sendMessageToSlack('*Siema Heniu - Tiktalik-Production*');
 
 
 var targets = [
     {
         repo: 'codepotpl/codepot',
         branch: 'production',
-        appName: 'WEBSITE PRODUCTION',
+        appName: 'WEBSITE PRODUCTION @ Tiktalik',
         script: './codepot-production.sh'
     },
-    {
-        repo: 'codepotpl/codepot',
-        branch: 'master',
-        appName: 'WEBSITE STAGING',
-        script: './codepot-staging.sh'
-    },
-    {
-        repo: 'codepotpl/codepot-webclient',
-        branch: 'master',
-        appName: 'WEBCLIENT STAGING',
-        script: './codepot-webclient-staging.sh'
-    },
+    //{
+    //    repo: 'codepotpl/codepot',
+    //    branch: 'master',
+    //    appName: 'WEBSITE STAGING',
+    //    script: './codepot-staging.sh'
+    //},
+    //{
+    //    repo: 'codepotpl/codepot-webclient',
+    //    branch: 'master',
+    //    appName: 'WEBCLIENT STAGING',
+    //    script: './codepot-webclient-staging.sh'
+    //},
     {
         repo: 'codepotpl/codepot-webclient',
         branch: 'production',
-        appName: 'WEBCLIENT PRODUCTION',
+        appName: 'WEBCLIENT PRODUCTION @ Tiktalik',
         script: './codepot-webclient-production.sh'
     },
-    {
-        repo: 'codepotpl/codepot-backend',
-        branch: 'master',
-        appName: 'BACKEND STAGING',
-        script: './codepot-backend-staging.sh'
-    },
+    //{
+    //    repo: 'codepotpl/codepot-backend',
+    //    branch: 'master',
+    //    appName: 'BACKEND STAGING',
+    //    script: './codepot-backend-staging.sh'
+    //},
     {
         repo: 'codepotpl/codepot-backend',
         branch: 'production',
-        appName: 'BACKEND PRODUCTION',
+        appName: 'BACKEND PRODUCTION @ Tiktalik',
         script: './codepot-backend-production.sh'
     }
 ];
