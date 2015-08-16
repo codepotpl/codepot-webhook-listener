@@ -6,6 +6,7 @@ git fetch -f;
 git reset --hard origin/production;
 git pull;
 docker-compose build;
+docker-compose stop;
 docker-compose up -d;
 
 sh /home/codepot/codepot-nginx-production/run.sh
