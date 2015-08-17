@@ -40,46 +40,46 @@ function sendMessageToSlack(message) {
     });
 }
 
-sendMessageToSlack('*Siema Heniu - Tiktalik-Production*');
+sendMessageToSlack('*Siema Heniu - AWS-STAGING*');
 
 
 var targets = [
-    {
-        repo: 'codepotpl/codepot',
-        branch: 'production',
-        appName: 'WEBSITE PRODUCTION @ Tiktalik',
-        script: './codepot-production.sh'
-    },
     //{
     //    repo: 'codepotpl/codepot',
-    //    branch: 'master',
-    //    appName: 'WEBSITE STAGING',
-    //    script: './codepot-staging.sh'
-    //},
-    //{
-    //    repo: 'codepotpl/codepot-webclient',
-    //    branch: 'master',
-    //    appName: 'WEBCLIENT STAGING',
-    //    script: './codepot-webclient-staging.sh'
+    //    branch: 'production',
+    //    appName: 'WEBSITE PRODUCTION @ Tiktalik',
+    //    script: './codepot-production.sh'
     //},
     {
+        repo: 'codepotpl/codepot',
+        branch: 'master',
+        appName: 'WEBSITE STAGING @ AWS-STAGING',
+        script: './codepot-staging.sh'
+    },
+    {
         repo: 'codepotpl/codepot-webclient',
-        branch: 'production',
-        appName: 'WEBCLIENT PRODUCTION @ Tiktalik',
-        script: './codepot-webclient-production.sh'
+        branch: 'master',
+        appName: 'WEBCLIENT STAGING @ AWS-STAGING',
+        script: './codepot-webclient-staging.sh'
     },
     //{
-    //    repo: 'codepotpl/codepot-backend',
-    //    branch: 'master',
-    //    appName: 'BACKEND STAGING',
-    //    script: './codepot-backend-staging.sh'
+    //    repo: 'codepotpl/codepot-webclient',
+    //    branch: 'production',
+    //    appName: 'WEBCLIENT PRODUCTION @ Tiktalik',
+    //    script: './codepot-webclient-production.sh'
     //},
     {
         repo: 'codepotpl/codepot-backend',
-        branch: 'production',
-        appName: 'BACKEND PRODUCTION @ Tiktalik',
-        script: './codepot-backend-production.sh'
-    }
+        branch: 'master',
+        appName: 'BACKEND STAGING @ AWS-STAGING',
+        script: './codepot-backend-staging.sh'
+    },
+    //{
+    //    repo: 'codepotpl/codepot-backend',
+    //    branch: 'production',
+    //    appName: 'BACKEND PRODUCTION @ Tiktalik',
+    //    script: './codepot-backend-production.sh'
+    //}
 ];
 
 targets.forEach(function (target) {
