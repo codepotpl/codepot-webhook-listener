@@ -9,4 +9,4 @@ docker-compose build;
 docker-compose stop;
 docker-compose up -d;
 
-sh /home/codepot/codepot-nginx-staging/run.sh
+sh /home/codepot/codepot-nginx-aws/run.sh
