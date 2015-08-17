@@ -44,12 +44,12 @@ sendMessageToSlack('*Siema Heniu - AWS-STAGING*');
 
 
 var targets = [
-    //{
-    //    repo: 'codepotpl/codepot',
-    //    branch: 'production',
-    //    appName: 'WEBSITE PRODUCTION @ Tiktalik',
-    //    script: './codepot-production.sh'
-    //},
+    {
+        repo: 'codepotpl/codepot',
+        branch: 'production',
+        appName: 'WEBSITE PRODUCTION @ AWS-STAGING',
+        script: './codepot-production.sh'
+    },
     {
         repo: 'codepotpl/codepot',
         branch: 'master',
