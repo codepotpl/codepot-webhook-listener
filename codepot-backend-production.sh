@@ -11,3 +11,6 @@ docker-compose up -d;
 
 sh /home/codepot/codepot-nginx-production/run.sh
 bash ~/codepot-metrics/run.sh
+
+django_container=`docker ps | grep django_ | sed 's/ \{2,\}/,/g' | cut -d ',' -f 7 | head -n 1`
+docker exec -it $django_container python manage.py rebuild_index -v2 —noinput —remove
