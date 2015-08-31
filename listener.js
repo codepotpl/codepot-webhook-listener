@@ -50,30 +50,30 @@ var targets = [
         appName: 'WEBSITE PRODUCTION @ Tiktalik',
         script: './codepot-production.sh'
     },
-    //{
-    //    repo: 'codepotpl/codepot',
-    //    branch: 'master',
-    //    appName: 'WEBSITE STAGING',
-    //    script: './codepot-staging.sh'
-    //},
-    //{
-    //    repo: 'codepotpl/codepot-webclient',
-    //    branch: 'master',
-    //    appName: 'WEBCLIENT STAGING',
-    //    script: './codepot-webclient-staging.sh'
-    //},
+    {
+        repo: 'codepotpl/codepot',
+        branch: 'master',
+        appName: 'WEBSITE STAGING @ Tiktalik',
+        script: './codepot-staging.sh'
+    },
+    {
+        repo: 'codepotpl/codepot-webclient',
+        branch: 'master',
+        appName: 'WEBCLIENT STAGING @ Tiktalik',
+        script: './codepot-webclient-staging.sh'
+    },
     {
         repo: 'codepotpl/codepot-webclient',
         branch: 'production',
         appName: 'WEBCLIENT PRODUCTION @ Tiktalik',
         script: './codepot-webclient-production.sh'
     },
-    //{
-    //    repo: 'codepotpl/codepot-backend',
-    //    branch: 'master',
-    //    appName: 'BACKEND STAGING',
-    //    script: './codepot-backend-staging.sh'
-    //},
+    {
+        repo: 'codepotpl/codepot-backend',
+        branch: 'master',
+        appName: 'BACKEND STAGING',
+        script: './codepot-backend-staging.sh'
+    },
     {
         repo: 'codepotpl/codepot-backend',
         branch: 'production',
